@@ -1,1 +1,126 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
 
+<title>Design Certificate</title>
+<meta name="description" content="Design Certificate">
+<meta name="keywords" content="design certificate">
+<meta property="og:site_name" content="Design certificate">
+<meta property="og:title" content="Design Certificate">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Design Certificate">
+<meta property="og:url" content="https://designskills.com">
+<meta property="og:image" content="assets/images/certificate_ogp.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Design Certificate">
+<meta name="twitter:creator" content="@Design Certificate">
+<meta name="twitter:title" content="Design Certificate">
+<meta name="twitter:description" content="Design Certificate">
+<meta name="twitter:image" content="assets/images/certificate_ogp.jpg">
+
+<link rel="stylesheet" href="assets/css/style.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<style>
+    #mainContents{
+        margin-top:100px;
+        height:600px;
+        text-align:center;
+    }
+    
+    .level-label{
+        font-size:20px;
+    
+    }
+    
+    .test{
+        background-color:#fdfdfd;
+        height:60px;
+        width:200px;
+    }
+    .user-info{
+        font-size:16px;
+        color:gray;
+    }
+</style>
+<script>
+    window.addEventListener("load",function() {
+        getJsonp_GAS();
+    });
+
+    function getJsonp_GAS() {
+        var id ='b0001';
+
+        var param_id = getParam('id');
+        console.log(param_id);
+
+        $.ajax({
+            type: 'GET',
+            url: 'https://script.google.com/macros/s/AKfycbzMMT4E2xIrRTBRXUamGvnZced-KuE1TY3bSHXeTn_Hhgce6-o/exec?id='+id+'&callback=?',
+            dataType: 'jsonp',
+            jsonpCallback: 'jsondata',
+            headers: {
+                'Access-Control-Allow-Credentials' : true,
+                'Access-Control-Allow-Origin':'*',
+                'Access-Control-Allow-Methods':'GET',
+                'Access-Control-Allow-Headers':'application/json',
+            },
+            success: function(json){
+                console.log(json);
+                var len = json.length;
+                var l1 = '';
+                var l2 = '';
+                console.log(len);
+                for(var i=0; i < len; i++){
+                    var l = json[i].level;
+
+                    if(l == "L1"){
+                        l1 += json[i].fname + ' ' + json[i].lname + ':'+ json[i].score + ':'+ json[i].pass;
+                    }else if(l == "L2"){
+                        l2 += json[i].fname + ' ' + json[i].lname + ':'+ json[i].score + ':'+ json[i].pass;
+                    }
+                }
+
+                console.log(l1);
+                console.log(l2);
+
+
+                document.getElementById('l1').innerHTML = l1;
+                document.getElementById('l2').innerHTML = l2;
+            }
+        });
+    }
+
+    function getParam(name, url) {
+        if (!url){
+            url = window.location.href;
+        }
+
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),results = regex.exec(url);
+        if (!results){
+            return null;
+        }
+        if (!results[2]){
+            return '';
+        }
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+</script>
+
+</head>
+<body>
+    <!-- BEGIN #mainContents -->
+    <main id="mainContents" class="main-form">
+        <div ><p class="level-label">Level 1: <span class="user-info" id='l1'></span></p></div>
+        <div ><p class="level-label">Level 2: <span class="user-info" id='l2'></span></p></div>
+    </main>
+    <!-- END #mainContents -->
+
+    
+</body>
+</html>
