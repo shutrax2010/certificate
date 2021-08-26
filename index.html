@@ -19,7 +19,7 @@
 <meta name="twitter:description" content="Design Certificate">
 <meta name="twitter:image" content="assets/images/certificate_ogp.jpg">
 
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/loading.css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,9 +29,6 @@
 
 
 <style>
-/*    html, body { height: 100%; }
-*/
-
     body{
         padding: 10px 10px;
         margin: 20px 20px;
@@ -43,7 +40,7 @@
         font-family: 'Archivo', sans-serif;
         font-size: 60px;
         font-weight:700;
-        margin: 20px 20px;
+        background-color: #111111;
     }
     .background-pro{
         background: linear-gradient(#ff7f50, crimson);
@@ -65,20 +62,7 @@
         margin-left: auto;
         margin-right: auto;
     }
-/*
-    #mainContents{
-        background: linear-gradient(#05FBFF, #1E00FF);
-        outline: 4px solid rgb(255, 255, 255);
-        padding: 10px 10px;
-        margin: 20px 20px;
 
-    }
-    .main-container{
-        background-color:white;
-        text-align:center;
-        font-family: 'Archivo', sans-serif;
-    }
-    */
     .level-label{
         font-size:20px;
         font-family: 'Archivo', sans-serif;
@@ -237,34 +221,22 @@ var passedL2 = false;
     }
 
     function updatePage(){
-
         $('#l1').html(l1);
         $('#l2').html(l2);
         $('#user-name').html(name.toUpperCase());
         $('#published-date').html(date);
 
-//        document.getElementById('l2').innerHTML = l2;
-//        document.getElementById('user-name').innerHTML = name.toUpperCase();
-//        document.getElementById('published-date').innerHTML = date;
-
         if(passedL1 && passedL2){
-//            document.getElementById('badge-img').innerHTML = '<img src="assets/images/l2badge.png" alt="design certificate badge">';
-//            document.getElementById('certificate-level').innerHTML = "(PROFESSIONAL LEVEL)";
-
             $('#badge-img').html('<img src="assets/images/l2badge.png" alt="design certificate badge">');
             $('#certificate-level').html('(PROFESSIONAL LEVEL)');
             $('.body-container').addClass('background-pro');
 
         }else if(passedL1 && !passedL2){
-//            document.getElementById('badge-img').innerHTML = '<img src="assets/images/l1badge.png" alt="design certificate badge">';
-//            document.getElementById('certificate-level').innerHTML = "(ASSOCIATE LEVEL)";
-
             $('#badge-img').html('<img src="assets/images/l1badge.png" alt="design certificate badge">');
             $('#certificate-level').html('(ASSOCIATE LEVEL)');
             $('.body-container').addClass('background-asso');
-
         }else{
-
+            // TODO
         }
 
         $('#mainContents').removeClass('no-display');
@@ -275,8 +247,10 @@ var passedL2 = false;
 
 </head>
 <body class="body-container">
-
-    <div class="loading">LOADING...</div>
+    <div id="loading-wrapper" class="loading">
+        <div id="loading-text">LOADING</div>
+        <div id="loading-content"></div>
+    </div>
 
     <!-- BEGIN #mainContents -->
     <main id="mainContents" class="no-display">
