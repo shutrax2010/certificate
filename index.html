@@ -1,1 +1,320 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
 
+<title>Design Certificate</title>
+<meta name="description" content="Design Certificate">
+<meta name="keywords" content="design certificate">
+<meta property="og:site_name" content="Design certificate">
+<meta property="og:title" content="Design Certificate">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Design Certificate">
+<meta property="og:url" content="https://designskills.com">
+<meta property="og:image" content="assets/images/certificate_ogp.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Design Certificate">
+<meta name="twitter:creator" content="@Design Certificate">
+<meta name="twitter:title" content="Design Certificate">
+<meta name="twitter:description" content="Design Certificate">
+<meta name="twitter:image" content="assets/images/certificate_ogp.jpg">
+
+<link rel="stylesheet" href="assets/css/style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100&display=swap" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<style>
+/*    html, body { height: 100%; }
+*/
+
+    body{
+        padding: 10px 10px;
+        margin: 20px 20px;
+        height:800px;
+    }
+    .no-display{
+        display: none;
+    }
+    .loading{
+        font-family: 'Archivo', sans-serif;
+        font-size: 60px;
+        font-weight:700;
+        margin: 20px 20px;
+    }
+    .background-pro{
+        background: linear-gradient(#ff7f50, crimson);
+        outline: 4px solid rgb(255, 255, 255);
+    }
+    .background-asso{
+        background: linear-gradient(#05FBFF, #1E00FF);
+        outline: 4px solid rgb(255, 255, 255);
+    }
+
+    #mainContents{
+        background-color:white;
+        text-align:center;
+        font-family: 'Archivo', sans-serif;
+    }
+
+    .main-container{
+        max-width: 1280px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+/*
+    #mainContents{
+        background: linear-gradient(#05FBFF, #1E00FF);
+        outline: 4px solid rgb(255, 255, 255);
+        padding: 10px 10px;
+        margin: 20px 20px;
+
+    }
+    .main-container{
+        background-color:white;
+        text-align:center;
+        font-family: 'Archivo', sans-serif;
+    }
+    */
+    .level-label{
+        font-size:20px;
+        font-family: 'Archivo', sans-serif;
+    }
+    
+    .test{
+        background-color:#fdfdfd;
+        height:60px;
+        width:200px;
+    }
+    .user-info{
+        font-size:16px;
+        color:gray;
+    }
+
+    .top-items{
+        display: flex;
+        padding-top: 40px;
+        padding-left: 40px;        
+    }
+    .top-items-left{
+        width: 50%;
+        text-align:left;
+    }
+    .top-items-right{
+        width: 50%;        
+    }
+    .top-title{
+        font-size: 40px;
+        font-weight:700;
+    }
+    .top-name-desc{
+        margin-top:60px;
+    }
+    .desc-text{
+        font-size: 16px;
+        margin: 10px 0;
+    }
+    #user-name{
+        font-size: 60px;
+        font-weight:700;
+        margin-top:20px;
+        border-bottom: solid 1px black;
+    }
+    #badge-img img{
+        width: 400px;
+    }
+
+    .design-level-container{
+        text-align:left;
+        padding-left: 40px;     
+    }
+    .certificate-category{
+        font-size:30px;
+        font-weight:700;
+        margin: 20px 0;
+    }
+
+    .footer{
+        margin-top:100px;
+        padding-bottom: 80px;
+    }
+    .border-line{
+        border-bottom: solid 1px black;
+        width: 300px;
+    }
+    .footer-left{
+        padding-left: 40px;
+        text-align:left;
+    }
+    .debug-info{
+        display:none;
+    }
+
+</style>
+
+<script>
+
+var name = '';
+var date = '';
+var passedL1 = false;
+var passedL2 = false;
+
+    window.addEventListener("load",function() {
+
+        var param_id = getParam('id');
+        console.log(param_id);
+
+        getJsonp_GAS(param_id);
+    });
+
+    function getJsonp_GAS(id) {
+
+        $.ajax({
+            type: 'GET',
+            url: 'https://script.google.com/macros/s/AKfycbzMMT4E2xIrRTBRXUamGvnZced-KuE1TY3bSHXeTn_Hhgce6-o/exec?id='+id+'&callback=?',
+            dataType: 'jsonp',
+            jsonpCallback: 'jsondata',
+            headers: {
+                'Access-Control-Allow-Credentials' : true,
+                'Access-Control-Allow-Origin':'*',
+                'Access-Control-Allow-Methods':'GET',
+                'Access-Control-Allow-Headers':'application/json',
+            },
+            success: function(json){
+                console.log(json);
+                var len = json.length;
+                var l1 = '';
+                var l2 = '';
+                console.log(len);
+                for(var i=0; i < len; i++){
+                    var l = json[i].level;
+
+                    if(l == "L1"){
+                        l1 += json[i].fname + ' ' + json[i].lname + ':'+ json[i].score + ':'+json[i].date + ':'+ json[i].pass;
+
+                        if(json[i].pass == 'pass'){
+                            passedL1 = true;
+                        }
+                    }else if(l == "L2"){
+                        l2 += json[i].fname + ' ' + json[i].lname + ':'+ json[i].score + ':'+json[i].date + ':'+ json[i].pass;
+                        if(json[i].pass == 'pass'){
+                            passedL2 = true;
+                        }
+                    }
+                    if(name == ''){
+                        name = json[i].fname + ' ' + json[i].lname;
+                    }
+                    if(date == ''){
+                        d = new Date(json[i].date);
+                        var options = { year:"numeric", month:"long", day:"numeric"};
+                        date = d.toLocaleString("en-US", options);
+                        console.log(date); 
+                    }
+                }
+
+
+                updatePage();
+            }
+        });
+    }
+
+    function getParam(name, url) {
+        if (!url){
+            url = window.location.href;
+        }
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),results = regex.exec(url);
+        if (!results){
+            return null;
+        }
+        if (!results[2]){
+            return '';
+        }
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    function updatePage(){
+
+        $('#l1').html(l1);
+        $('#l2').html(l2);
+        $('#user-name').html(name.toUpperCase());
+        $('#published-date').html(date);
+
+//        document.getElementById('l2').innerHTML = l2;
+//        document.getElementById('user-name').innerHTML = name.toUpperCase();
+//        document.getElementById('published-date').innerHTML = date;
+
+        if(passedL1 && passedL2){
+//            document.getElementById('badge-img').innerHTML = '<img src="assets/images/l2badge.png" alt="design certificate badge">';
+//            document.getElementById('certificate-level').innerHTML = "(PROFESSIONAL LEVEL)";
+
+            $('#badge-img').html('<img src="assets/images/l2badge.png" alt="design certificate badge">');
+            $('#certificate-level').html('(PROFESSIONAL LEVEL)');
+            $('.body-container').addClass('background-pro');
+
+        }else if(passedL1 && !passedL2){
+//            document.getElementById('badge-img').innerHTML = '<img src="assets/images/l1badge.png" alt="design certificate badge">';
+//            document.getElementById('certificate-level').innerHTML = "(ASSOCIATE LEVEL)";
+
+            $('#badge-img').html('<img src="assets/images/l1badge.png" alt="design certificate badge">');
+            $('#certificate-level').html('(ASSOCIATE LEVEL)');
+            $('.body-container').addClass('background-asso');
+
+        }else{
+
+        }
+
+        $('#mainContents').removeClass('no-display');
+        $('.loading').addClass('no-display');
+    }
+
+</script>
+
+</head>
+<body class="body-container">
+
+    <div class="loading">LOADING...</div>
+
+    <!-- BEGIN #mainContents -->
+    <main id="mainContents" class="no-display">
+        <div class="main-container">
+            <div class="top-items">
+                <div class="top-items-left">
+                    <h1 class="top-title">CERIFICATE OF<br />COMPLETION</h1>
+                    <h2 class="top-name-desc desc-text">PRESENTED TO:</h2>
+                    <div id="user-name" class="top-name"></div>
+                </div>
+                <div class="top-items-right">
+                    <div id="badge-img"></div>
+                </div>
+            </div>
+            <div class="design-level-container">
+                <h2 class="desc-text">FOR COMPLETING GLOBAL DESIGN CERTIFICATE'S COURSE</h2>
+                <div class="certificate-category">DESIGN THINKING <span id="certificate-level"></span></div>
+                <div class="desc-text">COMPLETED ON <span id="published-date"></span></div>
+            </div>
+            <div class="footer">
+                <div class="footer-left">
+                    <div class="border-line"></div>
+                    <div class="desc-text">BRANDON K. HILL</div>
+                    <div class="desc-text">CEO OF BTRAX INC.</div>
+                </div>
+            </div>
+
+            <div class="debug-info">
+                <div ><p class="level-label">Level 1: <span class="user-info" id='l1'></span></p></div>
+                <div ><p class="level-label">Level 2: <span class="user-info" id='l2'></span></p></div>
+            </div>
+
+        </div>
+
+    </main>
+    <!-- END #mainContents -->
+
+    
+</body>
+</html>
