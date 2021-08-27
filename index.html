@@ -141,18 +141,48 @@
 
 <script>
 
-var name = '';
-var date = '';
-var passedL1 = false;
-var passedL2 = false;
+    var name = '';
+    var date = '';
+    var passedL1 = false;
+    var passedL2 = false;
 
     window.addEventListener("load",function() {
 
         var param_id = getParam('id');
         console.log(param_id);
+        if(param_id == null || param_id == ''){
+            showDefaultPage();
+        }else{
+            getJsonp_GAS(param_id);
+        }
 
-        getJsonp_GAS(param_id);
+
+         //       test(param_id);
+
     });
+
+    function test(id){
+
+        var url = 'https://script.google.com/macros/s/AKfycbzMMT4E2xIrRTBRXUamGvnZced-KuE1TY3bSHXeTn_Hhgce6-o/exec?id='+id+'&callback=?';
+        var settings = {
+        'url': url,
+        'method': 'GET',
+        'dataType':"json",
+        'data': {spreadsheetId: "19zN-6cGC99NfWhwluDAC5zrNjlRxG7Pq5e3yB_L_doY", sheetName: "Sheet1"},
+        };
+        $.ajax(settings).done(json => {
+            console.log(json);
+
+            var len = json.length;
+            console.log(len);
+
+        }).fail(err => {
+            console.log('ERROR')
+            console.log(err)
+        });
+    }
+
+
 
     function getJsonp_GAS(id) {
 
@@ -199,7 +229,6 @@ var passedL2 = false;
                     }
                 }
 
-
                 updatePage();
             }
         });
@@ -237,9 +266,16 @@ var passedL2 = false;
             $('.body-container').addClass('background-asso');
         }else{
             // TODO
+            showDefaultPage();
+            return;
         }
 
         $('#mainContents').removeClass('no-display');
+        $('.loading').addClass('no-display');
+    }
+
+    function showDefaultPage(){
+        $('#defaultContents').removeClass('no-display');
         $('.loading').addClass('no-display');
     }
 
@@ -284,10 +320,21 @@ var passedL2 = false;
             </div>
 
         </div>
-
     </main>
     <!-- END #mainContents -->
 
-    
+    <!-- BEGIN #defaultContents -->
+    <section id="defaultContents" class="no-display">
+        <div class="top-items">
+            <div class="top-items-left">
+                <h2 class="top-title">DESIGN CERIFICATE</h1>
+            </div>
+            <div class="top-items-right">
+                <div id="badge-img"></div>
+            </div>
+        </div>
+    </section>
+    <!-- END #defaultContents -->
+
 </body>
 </html>
