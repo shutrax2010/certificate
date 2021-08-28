@@ -19,6 +19,7 @@
 <meta name="twitter:description" content="Design Certificate">
 <meta name="twitter:image" content="assets/images/certificate_ogp.jpg">
 
+<link rel="icon" href="favicon.ico" />
 <link rel="stylesheet" href="assets/css/loading.css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -153,12 +154,10 @@
         if(param_id == null || param_id == ''){
             showDefaultPage();
         }else{
+//            test(param_id);
+
             getJsonp_GAS(param_id);
         }
-
-
-         //       test(param_id);
-
     });
 
     function test(id){
@@ -167,7 +166,7 @@
         var settings = {
         'url': url,
         'method': 'GET',
-        'dataType':"json",
+        'dataType':"jsonp",
         'data': {spreadsheetId: "19zN-6cGC99NfWhwluDAC5zrNjlRxG7Pq5e3yB_L_doY", sheetName: "Sheet1"},
         };
         $.ajax(settings).done(json => {
@@ -176,13 +175,43 @@
             var len = json.length;
             console.log(len);
 
+            var l1 = '';
+            var l2 = '';
+            console.log(len);
+            for(var i=0; i < len; i++){
+                var l = json[i].level;
+
+                if(l == "L1"){
+                    l1 += json[i].fname + ' ' + json[i].lname + ':'+ json[i].score + ':'+json[i].date + ':'+ json[i].pass;
+
+                    if(json[i].pass == 'pass'){
+                        passedL1 = true;
+                    }
+                }else if(l == "L2"){
+                    l2 += json[i].fname + ' ' + json[i].lname + ':'+ json[i].score + ':'+json[i].date + ':'+ json[i].pass;
+                    if(json[i].pass == 'pass'){
+                        passedL2 = true;
+                    }
+                }
+                if(name == ''){
+                    name = json[i].fname + ' ' + json[i].lname;
+                }
+                if(date == ''){
+                    d = new Date(json[i].date);
+                    var options = { year:"numeric", month:"long", day:"numeric"};
+                    date = d.toLocaleString("en-US", options);
+                    console.log(date); 
+                }
+            }
+
+            updatePage();
+
+
         }).fail(err => {
-            console.log('ERROR')
+            console.log('ERROR 1')
             console.log(err)
         });
     }
-
-
 
     function getJsonp_GAS(id) {
 
@@ -196,8 +225,9 @@
                 'Access-Control-Allow-Origin':'*',
                 'Access-Control-Allow-Methods':'GET',
                 'Access-Control-Allow-Headers':'application/json',
-            },
-            success: function(json){
+//                'X-Content-Type-Options': "nosniff",
+            }
+            }).done(function(json){
                 console.log(json);
                 var len = json.length;
                 var l1 = '';
@@ -230,8 +260,12 @@
                 }
 
                 updatePage();
-            }
-        });
+            }).fail(function(err) {
+                console.log('ERROR 2')
+                console.log(err)
+            }).always(function() {
+              console.log('complete');
+            });
     }
 
     function getParam(name, url) {
