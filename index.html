@@ -28,8 +28,16 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-
 <style>
+    /*
+    body {
+        content: "";
+        background: url(assets/images/pro-background.png) no-repeat 0 0 / 100%;
+        width: 100%;
+        height: 100%;
+    }
+*/
+
     body{
         padding: 10px 10px;
         margin: 20px 20px;
@@ -44,7 +52,7 @@
         background-color: #111111;
     }
     .background-pro{
-        background: linear-gradient(#ff7f50, crimson);
+        background: linear-gradient(#800080, #ff4500);
         outline: 4px solid rgb(255, 255, 255);
     }
     .background-asso{
@@ -80,20 +88,18 @@
     }
 
     .top-items{
-        display: flex;
         padding-top: 40px;
-        padding-left: 40px;        
     }
+
     .top-items-left{
-        width: 50%;
-        text-align:left;
     }
     .top-items-right{
-        width: 50%;        
     }
+
     .top-title{
-        font-size: 40px;
-        font-weight:700;
+        font-size: 16px;
+        font-weight:400;
+        margin-top:40px
     }
     .top-name-desc{
         margin-top:60px;
@@ -106,38 +112,46 @@
         font-size: 60px;
         font-weight:700;
         margin-top:20px;
-        border-bottom: solid 1px black;
     }
     #badge-img img{
-        width: 400px;
+        width: 300px;
     }
 
     .design-level-container{
-        text-align:left;
-        padding-left: 40px;     
+        padding-top: 40px;     
     }
     .certificate-category{
         font-size:30px;
         font-weight:700;
         margin: 20px 0;
     }
-
+    .dc-logo-img{
+        width:300px;
+        height:60px;
+        margin-top: 40px;
+    }
     .footer{
-        margin-top:100px;
+        margin-top:60px;
         padding-bottom: 80px;
+        display: flex;
     }
     .border-line{
         border-bottom: solid 1px black;
         width: 300px;
     }
     .footer-left{
-        padding-left: 40px;
+        padding-left: 60px;
         text-align:left;
+        width: 50%;
+    }
+    .footer-right{
+        padding-right: 60px;
+        text-align:right;
+        width: 50%;
     }
     .debug-info{
         display:none;
     }
-
 </style>
 
 <script>
@@ -200,12 +214,11 @@
                     d = new Date(json[i].date);
                     var options = { year:"numeric", month:"long", day:"numeric"};
                     date = d.toLocaleString("en-US", options);
-                    console.log(date); 
+                    console.log(date.toUpperCase()); 
                 }
             }
 
             updatePage();
-
 
         }).fail(err => {
             console.log('ERROR 1')
@@ -289,6 +302,11 @@
         $('#user-name').html(name.toUpperCase());
         $('#published-date').html(date);
 
+        thispage = location.href;
+        console.log(thispage);
+
+        fblink = "https://www.facebook.com/sharer.php?u=" + thispage;
+
         if(passedL1 && passedL2){
             $('#badge-img').html('<img src="assets/images/l2badge.png" alt="design certificate badge">');
             $('#certificate-level').html('(PROFESSIONAL LEVEL)');
@@ -326,33 +344,54 @@
     <main id="mainContents" class="no-display">
         <div class="main-container">
             <div class="top-items">
-                <div class="top-items-left">
-                    <h1 class="top-title">CERIFICATE OF<br />COMPLETION</h1>
-                    <h2 class="top-name-desc desc-text">PRESENTED TO:</h2>
-                    <div id="user-name" class="top-name"></div>
-                </div>
-                <div class="top-items-right">
+                <div class="top-items-img">
                     <div id="badge-img"></div>
                 </div>
+                <h1 class="top-title">CERIFICATE OF COMPLETION AWARED TO:</h1>
+                <div id="user-name" class="top-name"></div>
             </div>
             <div class="design-level-container">
                 <h2 class="desc-text">FOR COMPLETING GLOBAL DESIGN CERTIFICATE'S COURSE</h2>
                 <div class="certificate-category">DESIGN THINKING <span id="certificate-level"></span></div>
-                <div class="desc-text">COMPLETED ON <span id="published-date"></span></div>
+                <img class="dc-logo-img" src ="assets/images/design-certificate-logo.png" alt="Design certificate logo"></img>
             </div>
             <div class="footer">
                 <div class="footer-left">
                     <div class="border-line"></div>
-                    <div class="desc-text">BRANDON K. HILL</div>
-                    <div class="desc-text">CEO OF BTRAX INC.</div>
+                    <div class="desc-text">BRANDON K. HILL, CEO OF BTRAX INC.</div>
                 </div>
+                <div class="footer-right">
+                    <div class="desc-text">COMPLETED ON <span id="published-date"></span></div>
+                    <!--
+                        Facebook
+                        https://www.facebook.com/sharer.php?u=https://i-pro.futuredesignchallenge.com/
+                        Twitter
+                        https://twitter.com/intent/tweet?url=https://i-pro.futuredesignchallenge.com%2F&text=i-Pro%20Future%20Design%20Challenge
+                        linkedin
+                        https://www.linkedin.com/cws/share?url=https://i-pro.futuredesignchallenge.com/
+
+                    -->
+                    <div class="sns-shares">
+                        <a href="https://www.facebook.com/sharer.php?u=http://certificate.designskills.org/">
+                            <img src="assets/images/fb-logo.png" alt="Facebook logo"></img>
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?url=http://certificate.designskills.org%2F&text=Design%20Certificate">
+                            <img src="assets/images/tw-logo.png" alt="Twitter logo"></img>
+                        </a>
+                        <a href="https://www.linkedin.com/cws/share?url=http://certificate.designskills.org/">
+                            <img src="assets/images/li-logo.png" alt="LinkedIn logo"></img>
+                        </a>
+                </div>
+
+
+
+
             </div>
 
             <div class="debug-info">
                 <div ><p class="level-label">Level 1: <span class="user-info" id='l1'></span></p></div>
                 <div ><p class="level-label">Level 2: <span class="user-info" id='l2'></span></p></div>
             </div>
-
         </div>
     </main>
     <!-- END #mainContents -->
