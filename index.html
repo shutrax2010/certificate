@@ -28,20 +28,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<style>
-    /*
-    body {
-        content: "";
-        background: url(assets/images/pro-background.png) no-repeat 0 0 / 100%;
-        width: 100%;
-        height: 100%;
-    }
-*/
-
-    body{
-        padding: 10px 10px;
-        margin: 20px 20px;
-    }
+<style>    
     .no-display{
         display: none;
     }
@@ -51,74 +38,82 @@
         font-weight:700;
         background-color: #111111;
     }
+    .body-container{
+        max-width: 1440px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 1100px;
+    }
     .background-pro{
-        background: linear-gradient(#800080, #ff4500);
-        outline: 4px solid rgb(255, 255, 255);
+        content: "";
+        background: url(assets/images/l2background.png) no-repeat 0 0 / 100%;
+        background-size: 100% 100%;
     }
     .background-asso{
-        background: linear-gradient(#05FBFF, #1E00FF);
-        outline: 4px solid rgb(255, 255, 255);
+        content: "";
+        background: url(assets/images/l1background.png) no-repeat 0 0 / 100%;
+        background-size: 100% 100%;
     }
-
     #mainContents{
-        background-color:white;
         text-align:center;
         font-family: 'Archivo', sans-serif;
+        padding-top: 60px;
+        padding-bottom: 20px;
     }
-
     .main-container{
         max-width: 1280px;
         margin-left: auto;
         margin-right: auto;
     }
+    .mobile-only{
+        display: none;;
+    }
+    @media screen and (max-width:800px){
+        .body-container{
+            height:900px;
+        }
+        .mobile-only{
+            display: block;
+        }
+    }
+    /*
+    @media screen and (max-width:400px){
+        .mobile-only{
+            display: block;
+        }
+    }
+    */
 
-    .level-label{
-        font-size:20px;
-        font-family: 'Archivo', sans-serif;
-    }
-    
-    .test{
-        background-color:#fdfdfd;
-        height:60px;
-        width:200px;
-    }
-    .user-info{
-        font-size:16px;
-        color:gray;
-    }
 
+    /*
+     * Top section
+     */
     .top-items{
         padding-top: 40px;
     }
-
-    .top-items-left{
-    }
-    .top-items-right{
-    }
-
     .top-title{
         font-size: 16px;
         font-weight:400;
-        margin-top:40px
+        margin-top:20px
     }
     .top-name-desc{
         margin-top:60px;
     }
     .desc-text{
+        font-family: 'Archivo', sans-serif;
         font-size: 16px;
         margin: 10px 0;
     }
     #user-name{
-        font-size: 60px;
+        font-size: 45px;
         font-weight:700;
         margin-top:20px;
     }
     #badge-img img{
         width: 300px;
     }
-
     .design-level-container{
-        padding-top: 40px;     
+        padding-top: 20px;     
     }
     .certificate-category{
         font-size:30px;
@@ -130,28 +125,122 @@
         height:60px;
         margin-top: 40px;
     }
-    .footer{
+    .bottom{
         margin-top:60px;
-        padding-bottom: 80px;
         display: flex;
     }
     .border-line{
         border-bottom: solid 1px black;
         width: 300px;
     }
-    .footer-left{
-        padding-left: 60px;
+    .bottom-left{
+        padding-left: 100px;
         text-align:left;
         width: 50%;
     }
-    .footer-right{
-        padding-right: 60px;
+    .bottom-right{
+        padding-right: 100px;
+        padding-top: 70px;
         text-align:right;
         width: 50%;
     }
-    .debug-info{
-        display:none;
+    .sign-underlines{
+        top: -20px;
+        position: relative;
     }
+    .sign-text{
+        margin-top:20px;
+    }
+    @media screen and (max-width:800px){
+        #badge-img img{
+            width: 177px;
+        }
+        .top-title{
+            font-size: 10px;
+        }
+        #user-name{
+            font-size: 25px;
+        }
+        .desc-text{
+            font-size: 10px;
+        }
+        .certificate-category{
+            font-size: 20px;
+        }
+        .bottom{
+            margin-top:40px;
+            display: block;
+        }
+        .bottom-left{
+            padding-left:0;
+            text-align: center;
+            width: 100%;;
+        }
+        .bottom-right{
+            padding-top:0;
+            padding-right:0;
+            text-align: center;
+            width: 100%;;
+        }
+        .border-line{
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    /*
+     * Footer section
+     */
+    .footer{
+        max-width: 1440px;
+        margin-left: auto;
+        margin-right: auto;        
+
+        text-align: right;
+        padding-right:40px;
+        padding-top:60px
+    }
+    .logos-row{
+        list-style: none;
+        display: flex;
+        float: right;
+    }
+    .logo-item{
+        margin-right: 20px;
+    }
+    .logo-item img{
+        width:60px;
+        height:60px;
+    }
+    @media screen and (max-width:800px){
+        .footer{
+            padding-right:0;
+            padding-top:80px;
+            text-align: center;
+        }
+        .logo-item img{
+            width:32px;
+            height:32px;
+        }
+        .bottom-left{
+            text-align: center;
+        }
+        .bottom-right{
+            text-align: center;
+        }
+        .logos-row{
+            float: none;
+            justify-content: center;
+            padding-right: 30px;
+        }
+        .sign-img{
+            width: 120px;
+        }
+
+    }
+
+
 </style>
 
 <script>
@@ -164,69 +253,16 @@
     window.addEventListener("load",function() {
 
         var param_id = getParam('id');
-        console.log(param_id);
+//        console.log(param_id);
+
         if(param_id == null || param_id == ''){
             showDefaultPage();
         }else{
-//            test(param_id);
-
-            getJsonp_GAS(param_id);
+            getDataFromGAS(param_id);
         }
     });
 
-    function test(id){
-
-        var url = 'https://script.google.com/macros/s/AKfycbzMMT4E2xIrRTBRXUamGvnZced-KuE1TY3bSHXeTn_Hhgce6-o/exec?id='+id+'&callback=?';
-        var settings = {
-        'url': url,
-        'method': 'GET',
-        'dataType':"jsonp",
-        'data': {spreadsheetId: "19zN-6cGC99NfWhwluDAC5zrNjlRxG7Pq5e3yB_L_doY", sheetName: "Sheet1"},
-        };
-        $.ajax(settings).done(json => {
-            console.log(json);
-
-            var len = json.length;
-            console.log(len);
-
-            var l1 = '';
-            var l2 = '';
-            console.log(len);
-            for(var i=0; i < len; i++){
-                var l = json[i].level;
-
-                if(l == "L1"){
-                    l1 += json[i].fname + ' ' + json[i].lname + ':'+ json[i].score + ':'+json[i].date + ':'+ json[i].pass;
-
-                    if(json[i].pass == 'pass'){
-                        passedL1 = true;
-                    }
-                }else if(l == "L2"){
-                    l2 += json[i].fname + ' ' + json[i].lname + ':'+ json[i].score + ':'+json[i].date + ':'+ json[i].pass;
-                    if(json[i].pass == 'pass'){
-                        passedL2 = true;
-                    }
-                }
-                if(name == ''){
-                    name = json[i].fname + ' ' + json[i].lname;
-                }
-                if(date == ''){
-                    d = new Date(json[i].date);
-                    var options = { year:"numeric", month:"long", day:"numeric"};
-                    date = d.toLocaleString("en-US", options);
-                    console.log(date.toUpperCase()); 
-                }
-            }
-
-            updatePage();
-
-        }).fail(err => {
-            console.log('ERROR 1')
-            console.log(err)
-        });
-    }
-
-    function getJsonp_GAS(id) {
+    function getDataFromGAS(id) {
 
         $.ajax({
             type: 'GET',
@@ -238,25 +274,19 @@
                 'Access-Control-Allow-Origin':'*',
                 'Access-Control-Allow-Methods':'GET',
                 'Access-Control-Allow-Headers':'application/json',
-//                'X-Content-Type-Options': "nosniff",
             }
             }).done(function(json){
                 console.log(json);
                 var len = json.length;
-                var l1 = '';
-                var l2 = '';
-                console.log(len);
+
                 for(var i=0; i < len; i++){
                     var l = json[i].level;
 
                     if(l == "L1"){
-                        l1 += json[i].fname + ' ' + json[i].lname + ':'+ json[i].score + ':'+json[i].date + ':'+ json[i].pass;
-
                         if(json[i].pass == 'pass'){
                             passedL1 = true;
                         }
                     }else if(l == "L2"){
-                        l2 += json[i].fname + ' ' + json[i].lname + ':'+ json[i].score + ':'+json[i].date + ':'+ json[i].pass;
                         if(json[i].pass == 'pass'){
                             passedL2 = true;
                         }
@@ -268,13 +298,13 @@
                         d = new Date(json[i].date);
                         var options = { year:"numeric", month:"long", day:"numeric"};
                         date = d.toLocaleString("en-US", options);
-                        console.log(date); 
+                        date = date.toUpperCase();
                     }
                 }
 
                 updatePage();
             }).fail(function(err) {
-                console.log('ERROR 2')
+                console.log('ERROR')
                 console.log(err)
             }).always(function() {
               console.log('complete');
@@ -297,25 +327,21 @@
     }
 
     function updatePage(){
-        $('#l1').html(l1);
-        $('#l2').html(l2);
         $('#user-name').html(name.toUpperCase());
         $('#published-date').html(date);
-
-        thispage = location.href;
-        console.log(thispage);
-
-        fblink = "https://www.facebook.com/sharer.php?u=" + thispage;
 
         if(passedL1 && passedL2){
             $('#badge-img').html('<img src="assets/images/l2badge.png" alt="design certificate badge">');
             $('#certificate-level').html('(PROFESSIONAL LEVEL)');
             $('.body-container').addClass('background-pro');
+            updateSNSlinks(true);
 
         }else if(passedL1 && !passedL2){
             $('#badge-img').html('<img src="assets/images/l1badge.png" alt="design certificate badge">');
             $('#certificate-level').html('(ASSOCIATE LEVEL)');
             $('.body-container').addClass('background-asso');
+            updateSNSlinks(true);
+
         }else{
             // TODO
             showDefaultPage();
@@ -329,85 +355,106 @@
     function showDefaultPage(){
         $('#defaultContents').removeClass('no-display');
         $('.loading').addClass('no-display');
+        updateSNSlinks(false);
     }
 
+
+    function updateSNSlinks(isPassed){
+
+        url = 'https://certificate.designskills.org/';
+        if(isPassed){
+            url = location.href;
+        }
+        console.log(url);
+
+        fblink = "https://www.facebook.com/sharer.php?u=" + url;
+        twlink = "https://twitter.com/intent/tweet?url=" + url + "%2F&text=Design%20Certificate";
+        lilink = "https://www.linkedin.com/cws/share?url=" + url;
+
+        $(".fb-link").attr("href", fblink);
+        $(".tw-link").attr("href", twlink);
+        $(".li-link").attr("href", lilink);
+    }
 </script>
 
 </head>
-<body class="body-container">
+<body>
     <div id="loading-wrapper" class="loading">
         <div id="loading-text">LOADING</div>
         <div id="loading-content"></div>
     </div>
 
-    <!-- BEGIN #mainContents -->
-    <main id="mainContents" class="no-display">
-        <div class="main-container">
-            <div class="top-items">
-                <div class="top-items-img">
-                    <div id="badge-img"></div>
+    <!-- BEGIN .body-container -->
+    <div class="body-container">
+        <!-- BEGIN #mainContents -->
+        <main id="mainContents" class="no-display">
+            <div class="main-container">
+                <div class="top-items">
+                    <div class="top-items-img">
+                        <div id="badge-img"></div>
+                    </div>
+                    <h1 class="top-title">CERIFICATE OF COMPLETION AWARED TO:</h1>
+                    <div id="user-name" class="top-name"></div>
                 </div>
-                <h1 class="top-title">CERIFICATE OF COMPLETION AWARED TO:</h1>
-                <div id="user-name" class="top-name"></div>
-            </div>
-            <div class="design-level-container">
-                <h2 class="desc-text">FOR COMPLETING GLOBAL DESIGN CERTIFICATE'S COURSE</h2>
-                <div class="certificate-category">DESIGN THINKING <span id="certificate-level"></span></div>
-                <img class="dc-logo-img" src ="assets/images/design-certificate-logo.png" alt="Design certificate logo"></img>
-            </div>
-            <div class="footer">
-                <div class="footer-left">
-                    <div class="border-line"></div>
-                    <div class="desc-text">BRANDON K. HILL, CEO OF BTRAX INC.</div>
+                <div class="design-level-container">
+                    <h2 class="desc-text">FOR COMPLETING GLOBAL DESIGN <br class="mobile-only" />CERTIFICATE'S COURSE</h2>
+                    <div class="certificate-category">DESIGN THINKING <br class="mobile-only" /><span id="certificate-level"></span></div>
+                    <img class="dc-logo-img" src ="assets/images/design-certificate-logo.png" alt="Design certificate logo"></img>
                 </div>
-                <div class="footer-right">
-                    <div class="desc-text">COMPLETED ON <span id="published-date"></span></div>
-                    <!--
-                        Facebook
-                        https://www.facebook.com/sharer.php?u=https://i-pro.futuredesignchallenge.com/
-                        Twitter
-                        https://twitter.com/intent/tweet?url=https://i-pro.futuredesignchallenge.com%2F&text=i-Pro%20Future%20Design%20Challenge
-                        linkedin
-                        https://www.linkedin.com/cws/share?url=https://i-pro.futuredesignchallenge.com/
+                <div class="bottom">
+                    <div class="bottom-left">
+                        <img class="sign-img" src ="assets/images/sign.png" alt="Design certificate signature"></img>
+                        <div class="sign-underlines">
+                            <div class="border-line"></div>
+                            <div class="sign-text desc-text">BRANDON K. HILL, CEO OF BTRAX INC.</div>
+                        </div>
+                    </div>
+                    <div class="bottom-right">
+                        <div class="desc-text">COMPLETED ON <span id="published-date"></span></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- END #mainContents -->
 
-                    -->
-                    <div class="sns-shares">
-                        <a href="https://www.facebook.com/sharer.php?u=http://certificate.designskills.org/">
+        <div class="footer">
+            <div class="desc-text">SHARE TO YOUR SOCIAL MEDIA:</div>
+            <div class="sns-shares">
+                <ul class="logos-row">
+                    <li class="logo-item">
+                        <a class="fb-link" href="" target="_blank"　>
                             <img src="assets/images/fb-logo.png" alt="Facebook logo"></img>
                         </a>
-                        <a href="https://twitter.com/intent/tweet?url=http://certificate.designskills.org%2F&text=Design%20Certificate">
-                            <img src="assets/images/tw-logo.png" alt="Twitter logo"></img>
-                        </a>
-                        <a href="https://www.linkedin.com/cws/share?url=http://certificate.designskills.org/">
-                            <img src="assets/images/li-logo.png" alt="LinkedIn logo"></img>
-                        </a>
+                    </li>
+                    <li class="logo-item">
+                        <a class="tw-link" href="" target="_blank"　>
+                        <img src="assets/images/tw-logo.png" alt="Twitter logo"></img>
+                    </a>
+                    </li>
+                    <li class="logo-item">
+                        <a class="li-link" href="" target="_blank"　>
+                        <img src="assets/images/li-logo.png" alt="LinkedIn logo"></img>
+                    </a>
+                </li>
+            </div>
+        </div>
+
+        <!-- BEGIN #defaultContents -->
+        <section id="defaultContents" class="no-display">
+            <div class="top-items">
+                <div class="top-items-left">
+                    <h2 class="top-title">DESIGN CERIFICATE</h1>
                 </div>
-
-
-
-
+                <div class="top-items-right">
+                    <div id="badge-img"></div>
+                </div>
             </div>
+        </section>
+        <!-- END #defaultContents -->
+    </div>
+    <!-- END .body-container -->
 
-            <div class="debug-info">
-                <div ><p class="level-label">Level 1: <span class="user-info" id='l1'></span></p></div>
-                <div ><p class="level-label">Level 2: <span class="user-info" id='l2'></span></p></div>
-            </div>
-        </div>
-    </main>
-    <!-- END #mainContents -->
 
-    <!-- BEGIN #defaultContents -->
-    <section id="defaultContents" class="no-display">
-        <div class="top-items">
-            <div class="top-items-left">
-                <h2 class="top-title">DESIGN CERIFICATE</h1>
-            </div>
-            <div class="top-items-right">
-                <div id="badge-img"></div>
-            </div>
-        </div>
-    </section>
-    <!-- END #defaultContents -->
 
 </body>
 </html>
