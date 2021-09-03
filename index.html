@@ -6,31 +6,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
 
 <title>Design Certificate</title>
-<meta name="description" content="Design Certificate">
-<meta name="keywords" content="design certificate">
-<meta property="og:site_name" content="Design certificate">
-<meta property="og:title" content="Design Certificate">
+<meta name="description" content="Global Design Certificate">
+<meta name="keywords" content="global design certificate test">
+<meta property="og:site_name" content="Global Design certificate">
+<meta property="og:title" content="Global Design Certificate">
 <meta property="og:type" content="website">
-<meta property="og:description" content="Design Certificate">
-<meta property="og:url" content="https://designskills.com">
+<meta property="og:description" content="Global Design Certificate">
+<meta property="og:url" content="https://certificate.designskills.com">
 <meta property="og:image" content="assets/images/certificate_ogp.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@Design Certificate">
-<meta name="twitter:creator" content="@Design Certificate">
-<meta name="twitter:title" content="Design Certificate">
-<meta name="twitter:description" content="Design Certificate">
+<meta name="twitter:site" content="@Global Design Certificate">
+<meta name="twitter:creator" content="@Global Design Certificate">
+<meta name="twitter:title" content="Global Design Certificate">
+<meta name="twitter:description" content="Global Design Certificate">
 <meta name="twitter:image" content="assets/images/certificate_ogp.jpg">
 
 <link rel="icon" href="favicon.ico" />
 <link rel="stylesheet" href="assets/css/loading.css">
-
+<!--
+    <link rel="stylesheet" href="assets/css/style.css">
+-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100&display=swap" rel="stylesheet">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<style>    
+<style>
     .no-display{
         display: none;
     }
@@ -72,7 +74,7 @@
     }
     @media screen and (max-width:800px){
         .body-container{
-            height:900px;
+            height:820px;
             margin-top: 20px;
         }
         .mobile-only{
@@ -91,8 +93,20 @@
     /*
      * Top section
      */
-    .top-items{
+    .top-item-wrapper{
         padding-top: 40px;
+        display: flex;
+    }
+    .top-item{
+        width: 33%;
+    }
+    .top-left{
+    }
+    .top-center{
+        margin-top:60px;
+    }
+    .top-right{
+        margin-top:20px;
     }
     .top-title{
         font-size: 16px;
@@ -143,26 +157,52 @@
     }
     .bottom-right{
         padding-right: 100px;
-        padding-top: 70px;
+        padding-top: 110px;
         text-align:right;
         width: 50%;
     }
+    .sign-img{
+        width: 260px;
+    }
     .sign-underlines{
-        top: -20px;
+        top: -40px;
         position: relative;
     }
     .sign-text{
         margin-top:20px;
     }
     @media screen and (max-width:800px){
+        .top-item-wrapper{
+            padding-top: 0;
+            display: block;
+        }
+        .top-item{
+            width: 100%;
+        }
+        .top-left{
+            margin-left:0;
+        }
+        .top-right{
+            display: none;
+        }
+        .top-center{
+            margin-top:0;
+        }
         #badge-img img{
             width: 177px;
         }
+/*
+        .mobile-user-id{
+            margin-top: 40px;
+        }
+*/
         .top-title{
             font-size: 10px;
+            margin-top: 0;
         }
         #user-name{
             font-size: 25px;
+            padding-bottom: 10px;            
         }
         .desc-text{
             font-size: 10px;
@@ -185,6 +225,9 @@
             text-align: center;
             width: 100%;;
         }
+        .sign-underlines{
+            top: -20px;
+        }
         .border-line{
             width: 200px;
             margin-left: auto;
@@ -200,14 +243,14 @@
         margin-left: auto;
         margin-right: auto;        
 
-        text-align: right;
+        text-align: center;
         padding-right:40px;
-        padding-top:60px
+        padding-top:40px
     }
     .logos-row{
         list-style: none;
         display: flex;
-        float: right;
+        justify-content: center;
     }
     .logo-item{
         margin-right: 20px;
@@ -219,7 +262,7 @@
     @media screen and (max-width:800px){
         .footer{
             padding-right:0;
-            padding-top:80px;
+            padding-top:20px;
             text-align: center;
         }
         .logo-item img{
@@ -230,6 +273,7 @@
             text-align: center;
         }
         .bottom-right{
+            display:none;
             text-align: center;
         }
         .logos-row{
@@ -240,14 +284,12 @@
         .sign-img{
             width: 120px;
         }
-
     }
-
 
 </style>
 
 <script>
-
+    var user_id = '';
     var name = '';
     var date = '';
     var passedL1 = false;
@@ -255,13 +297,13 @@
 
     window.addEventListener("load",function() {
 
-        var param_id = getParam('id');
-//        console.log(param_id);
+        var id = getParam('id');
+        console.log(id);
 
-        if(param_id == null || param_id == ''){
+        if(id == null || id == ''){
             showDefaultPage();
         }else{
-            getDataFromGAS(param_id);
+            getDataFromGAS(id);
         }
     });
 
@@ -305,6 +347,7 @@
                     }
                 }
 
+                user_id = id;
                 updatePage();
             }).fail(function(err) {
                 console.log('ERROR')
@@ -331,7 +374,15 @@
 
     function updatePage(){
         $('#user-name').html(name.toUpperCase());
-        $('#published-date').html(date);
+        $(".published-date").each(function(i, elem) {
+            $(elem).html(date);
+//            $('.published-date').html(date);
+        });
+
+        $(".user-id").each(function(i, elem) {
+            $(elem).html('CERTIFICATE ID: #'+user_id);
+//             console.log(i + ': ' + $(elem).text());
+        });
 
         if(passedL1 && passedL2){
             $('#badge-img').html('<img src="assets/images/l2badge.png" alt="design certificate badge">');
@@ -392,20 +443,29 @@
         <!-- BEGIN #mainContents -->
         <main id="mainContents" class="no-display">
             <div class="main-container">
-                <div class="top-items">
-                    <div class="top-items-img">
+                <div class="top-item-wrapper">
+                    <div class="top-left top-item">
+                        <img class="dc-logo-img" src ="assets/images/design-certificate-logo.png" alt="Design certificate logo"></img>
+                    </div>
+                    <div class="mobile-only mobile-user-id">
+                        <div class="user-id desc-text"></div>
+                    </div>
+                    <div class="top-center top-item">
                         <div id="badge-img"></div>
                     </div>
-                    <h1 class="top-title">CERIFICATE OF COMPLETION AWARED TO:</h1>
-                    <div id="user-name" class="top-name"></div>
+                    <div class="top-right top-item">
+                        <div class="user-id" class="desc-text"></div>
+                    </div>
                 </div>
                 <div class="design-level-container">
+                    <h1 class="top-title">CERIFICATE OF COMPLETION AWARED TO:</h1>
+                    <div id="user-name" class="top-name"></div>
                     <h2 class="desc-text">FOR COMPLETING GLOBAL DESIGN <br class="mobile-only" />CERTIFICATE'S COURSE</h2>
                     <div class="certificate-category">DESIGN THINKING <br class="mobile-only" /><span id="certificate-level"></span></div>
-                    <img class="dc-logo-img" src ="assets/images/design-certificate-logo.png" alt="Design certificate logo"></img>
                 </div>
                 <div class="bottom">
                     <div class="bottom-left">
+                        <div class="desc-text mobile-only">COMPLETED ON <span class="published-date"></span></div>
                         <img class="sign-img" src ="assets/images/sign.png" alt="Design certificate signature"></img>
                         <div class="sign-underlines">
                             <div class="border-line"></div>
@@ -413,7 +473,7 @@
                         </div>
                     </div>
                     <div class="bottom-right">
-                        <div class="desc-text">COMPLETED ON <span id="published-date"></span></div>
+                        <div class="desc-text">COMPLETED ON <span class="published-date"></span></div>
                     </div>
                 </div>
             </div>
@@ -431,14 +491,15 @@
                     </li>
                     <li class="logo-item">
                         <a class="tw-link" href="" target="_blank"　>
-                        <img src="assets/images/tw-logo.png" alt="Twitter logo"></img>
-                    </a>
+                            <img src="assets/images/tw-logo.png" alt="Twitter logo"></img>
+                        </a>
                     </li>
                     <li class="logo-item">
                         <a class="li-link" href="" target="_blank"　>
-                        <img src="assets/images/li-logo.png" alt="LinkedIn logo"></img>
-                    </a>
-                </li>
+                            <img src="assets/images/li-logo.png" alt="LinkedIn logo"></img>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
 
