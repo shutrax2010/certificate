@@ -1,0 +1,252 @@
+.no-display{
+    display: none;
+}
+.loading{
+    font-family: 'Archivo', sans-serif;
+    font-size: 60px;
+    font-weight:700;
+    background-color: #111111;
+}
+.body-container{
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 1100px;
+}
+.background-pro{
+    content: "";
+    background: url(../images/l2background.png) no-repeat 0 0 / 100%;
+    background-size: 100% 100%;
+}
+.background-asso{
+    content: "";
+    background: url(../images/l1background.png) no-repeat 0 0 / 100%;
+    background-size: 100% 100%;
+}
+#mainContents{
+    text-align:center;
+    font-family: 'Archivo', sans-serif;
+    padding-top: 60px;
+    padding-bottom: 20px;
+}
+.main-container{
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.mobile-only{
+    display: none;;
+}
+@media screen and (max-width:800px){
+    .body-container{
+        height:820px;
+        margin-top: 20px;
+    }
+    .mobile-only{
+        display: block;
+    }
+}
+/*
+@media screen and (max-width:400px){
+    .mobile-only{
+        display: block;
+    }
+}
+*/
+
+
+/*
+ * Top section
+ */
+.top-item-wrapper{
+    padding-top: 40px;
+    display: flex;
+}
+.top-item{
+    width: 33%;
+}
+.top-left{
+}
+.top-center{
+    margin-top:60px;
+}
+.top-right{
+    margin-top:20px;
+}
+.top-title{
+    font-size: 16px;
+    font-weight:400;
+    margin-top:20px
+}
+.top-name-desc{
+    margin-top:60px;
+}
+.desc-text{
+    font-family: 'Archivo', sans-serif;
+    font-size: 16px;
+    margin: 10px 0;
+}
+#user-name{
+    font-size: 45px;
+    font-weight:700;
+    margin-top:20px;
+}
+#badge-img img{
+    width: 300px;
+}
+.design-level-container{
+    padding-top: 20px;     
+}
+.certificate-category{
+    font-size:30px;
+    font-weight:700;
+    margin: 20px 0;
+}
+.dc-logo-img{
+    width:300px;
+    height:60px;
+    margin-top: 40px;
+}
+.bottom{
+    margin-top:60px;
+    display: flex;
+}
+.border-line{
+    border-bottom: solid 1px black;
+    width: 300px;
+}
+.bottom-left{
+    padding-left: 100px;
+    text-align:left;
+    width: 50%;
+}
+.bottom-right{
+    padding-right: 100px;
+    padding-top: 110px;
+    text-align:right;
+    width: 50%;
+}
+.sign-img{
+    width: 260px;
+}
+.sign-underlines{
+    top: -40px;
+    position: relative;
+}
+.sign-text{
+    margin-top:20px;
+}
+@media screen and (max-width:800px){
+    .top-item-wrapper{
+        padding-top: 0;
+        display: block;
+    }
+    .top-item{
+        width: 100%;
+    }
+    .top-left{
+        margin-left:0;
+    }
+    .top-right{
+        display: none;
+    }
+    .top-center{
+        margin-top:0;
+    }
+    #badge-img img{
+        width: 177px;
+    }
+/*
+    .mobile-user-id{
+        margin-top: 40px;
+    }
+*/
+    .top-title{
+        font-size: 10px;
+        margin-top: 0;
+    }
+    #user-name{
+        font-size: 25px;
+        padding-bottom: 10px;            
+    }
+    .desc-text{
+        font-size: 10px;
+    }
+    .certificate-category{
+        font-size: 20px;
+    }
+    .bottom{
+        margin-top:40px;
+        display: block;
+    }
+    .bottom-left{
+        padding-left:0;
+        text-align: center;
+        width: 100%;;
+    }
+    .bottom-right{
+        padding-top:0;
+        padding-right:0;
+        text-align: center;
+        width: 100%;;
+    }
+    .sign-underlines{
+        top: -20px;
+    }
+    .border-line{
+        width: 200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/*
+ * Footer section
+ */
+.footer{
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;        
+
+    text-align: center;
+    padding-right:40px;
+    padding-top:40px
+}
+.logos-row{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+.logo-item{
+    margin-right: 20px;
+}
+.logo-item img{
+    width:60px;
+    height:60px;
+}
+@media screen and (max-width:800px){
+    .footer{
+        padding-right:0;
+        padding-top:20px;
+        text-align: center;
+    }
+    .logo-item img{
+        width:32px;
+        height:32px;
+    }
+    .bottom-left{
+        text-align: center;
+    }
+    .bottom-right{
+        display:none;
+        text-align: center;
+    }
+    .logos-row{
+        float: none;
+        justify-content: center;
+        padding-right: 30px;
+    }
+    .sign-img{
+        width: 120px;
+    }
+}
